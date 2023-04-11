@@ -1,0 +1,114 @@
+01 Pessoa pode ter até 03 carros
+    Tabela 1 -> N
+    Se a pessoa que tem 03 carros tentar comprar outro carro, receber
+    mensagem na tela que já possui numero máximo de carros permitido.
+
+Carros
+    Criar categorias:
+        Cores: Amarelo
+               Azul
+               Cinza
+
+        Modelo: Hatch
+                Sedã
+                Conversivel
+    Tabela 1 -> N
+
+Não pode existir carros cadastrados sem proprietários
+
+Pode cadastrar pessoas que ainda não tenham carros, e estes, precisam ser
+    identificados como: Oporttunidade de vendas
+
+
+Views:
+    Formulário para cadastro de proprietário + carros
+    Ao inserir CPF do cliente < Inicio do formulário > se já possuir
+    cadastro, retornar os dados do cliente, assim como quantos carros
+    possui, cores e modelos.
+
+    Formulário para cadastrar pessoas que queiram comprar carros, e 
+    ainda não possuem nenhum carro.
+
+    Listar em uma tela única, proprietários com < Id, nome, email, telefone,
+    quantidade de carros cadastrados (em numeros) > Id como link
+
+    Listar em uma tela única, oportunidades de vendas
+
+    Listar em uma tela única, rankin de carros, de maior quantidade para menor
+        < cores e modelos >
+    
+    Extra - Criar formulário onde cliente (oportunidade de vendas) possa
+    escolher carro, cor e modelo, e automaticamente, ser excluido de
+    oportunidade de vendas e acrescentado como proprietário com veículo.
+        < select >
+
+Banco de dados:
+class Pessoa:
+    id- models.IntegerField (PrimaryKey) 
+    nome - models.StringField
+    sobrenome - models.StringField
+    CPF - models.IntegerField
+    email - models.EmailField
+    celular - models.IntegerField
+    criado_em - models.DateField
+    owner_car = models.BooleanFielf(default=False)
+
+class Carro:
+    id- IntegerField (PrimaryKey)
+    cor = models.ForeignKey(Cor, on_delete=Do_nothing)
+    modelo = models.ForeignKey(Modelo, on_delete=Do_nothing) 
+    proprietário = models.ForeignKey(Owner_Cars, on_delete=Do_nothing)
+
+class Cor:
+    id- models.IntegerField (PrimaryKey) 
+    cor = models.CharField(choices=
+    ('Amarelo', 'Amarelo'),
+    ('Azul', 'Azul'),
+    ('Cinza', 'Cinza'))
+
+class Modelo:
+    id- models.IntegerField (PrimaryKey) 
+    modelo = models.CharField(choices=
+    ('Hatch', 'Hatch'),
+    ('Sedã', 'Sedã'),
+    ('Conversivel', 'Conversivel'))
+
+class Owner_Cars(models.Model):
+    id- models.IntegerField (PrimaryKey) 
+    owner = models.ForeignKey(Pessoa, on_delete=Do_nothing)
+    cars = models.ForeignKey(Carro, on_delete=Do_nothing)
+
+
+urls:
+    Home -> campo para inserir somente CPF
+        caso ja tenha cadastro, direcionar para página seguinte, onde
+        terá formulário para adicionar carros.
+        Se já tiver numero máximo de carros cadastrado no CPF, retornar
+        página informando que já possui numero máximo de carros.
+
+        Caso não tenha cadastro, direcionar á página formulário para
+        cadastro de pessoa; em seguida, direcionar á página para adicionar
+        carros. Cada acesso dá direito a adicionar 01 carro por vez até 
+        chegar ao limite.
+    
+    Cadastrar pessoa
+
+    Adicionar carro
+        Tem opção de select onde escolhe cor e modelo do carro.
+        Importante, cliente não pode ter carro repetido, nem modelo, nem cor.
+    
+    Oportunidades de vendas
+        Pessoas cadastradas, ao selecionar que não tem veículo, serão
+        renderizadas automaticamente nesta página
+
+        Criar opção para oportunidade de vendas poder adquirir carro, e sair
+        da lista de oportunidade de vendas
+    
+    ranking de carros
+        Renderizar gráfico com quantidade de carros por modelo e por cor
+    
+    ranking de proprietários
+        Renderizar gráfico com quantidade de owners por quantidade de carros
+    
+    
+
