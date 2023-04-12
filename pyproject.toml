@@ -9,8 +9,16 @@ packages = [{include = "django_avaliacao_01"}]
 [tool.poetry.dependencies]
 python = "^3.8"
 django = "^4.2"
+pytest-django = "^4.5.2"
+django-factory-boy = "^1.0.0"
+coverage = "^7.2.3"
+psycopg2-binary = "^2.9.6"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "carros_cidade.settings"
+python_files = ["test_*.py", "*_test.py", "testing/python/*.py"]

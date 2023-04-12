@@ -1,0 +1,9 @@
+import pytest
+import requests
+from django.urls import reverse
+
+
+def test_url_index_return_200(client):
+    url = reverse('index')
+    response = requests.get(url)
+    assert response.status_code == 200
