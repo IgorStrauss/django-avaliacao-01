@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+</title>Owner_car</title>
+
+{% block 'content' %}
+<div class="container">
+    <div class=" row">
+        <div class=" col-lg-12">
+            <h1 class=" mt-5">Carros e proprietários</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID carro</th>
+                        <th>Modelo</th>
+                        <th>Cor</th>
+                        <th>ID proprietário</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for car in cars %}
+                    <tr>
+                        <td>{{car.id}}</td>
+                        <td>
+                            <a href=" #">{{car.model}}</a>
+                        </td>
+                        <td>{{car.color}}</td>
+                        <td>{{car.owner_id}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

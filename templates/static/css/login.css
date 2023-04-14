@@ -1,0 +1,45 @@
+body{
+    font-family: 'Secular One', sans-serif;
+    background: #643d87 url(../../images/fundo.jpg) no-repeat top center;
+ 
+}
+#container{
+    width: 400px;
+    height: 300px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 215px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    text-align: center;
+}
+#container img{
+    width: 120px;
+    height: 120px;
+    margin-top: -60px;
+    margin-bottom: 30px;
+} 
+input{
+    height: 40px;
+    width: 80%;
+    font-size: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding-left: 40px;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: 10px;
+}
+input.email{
+    background-image: url(../imagens/icone-usuario.png);
+}
+input.submit{
+    color: #fff;
+    background-color: #f79300;
+    border: 2px solid #db7d00;
+    border-radius: 10px;
+    padding: 5px 20px;
+    height: 35px;
+    width: 50%;
+}
