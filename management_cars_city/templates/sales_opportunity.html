@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+</title>Oportunity</title>
+
+{% block 'content' %}
+<div class="container"">
+    <div class=" row">
+    <div class=" col-lg-12">
+        <h1 class=" mt-5">Oportunidades de vendas</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>CPF</th>
+                    <th>Cadastrado em</th>
+                    <th>Owner_car</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in persons %}
+                <tr>
+                    <td>{{person.id}}</td>
+                    <td>
+                        <a href=" #">{{person.format_name}}</a>
+                    </td>
+                    <td>{{person.format_last_name}}</td>
+                    <td>{{person.email}}</td>
+                    <td>{{person.format_celular}}</td>
+                    <td>{{person.format_cpf}}</td>
+                    <td>{{person.format_date}}</td>
+                    <td>{{person.owner_car}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>
+
+{% endblock %}
