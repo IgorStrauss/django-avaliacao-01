@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <center>
+            <h1>Cadastrar usuário</h1>
+        </center>
+
+        <form action="{% url 'management_cars_city:create_person' %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+</body>
+
+</html>
+
+
+</body>
+
+</html>
