@@ -11,23 +11,25 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID carro</th>
-                        <th>Modelo</th>
-                        <th>Cor</th>
                         <th>ID proprietário</th>
                         <th>Nome</th>
                         <th>Sobrenome</th>
+                        <th>ID carro</th>
+                        <th>Modelo</th>
+                        <th>Cor</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for car in cars %}
                     <tr>
+                        <td><a href="#">{{car.owner_id}}</a></td>
+                        <td>{{car.owner.format_name}}</td>
+                        <td>{{car.owner.format_last_name}}</td>
                         <td>{{car.id}}</td>
-                        <td>
-                            <a href=" #">{{car.model}}</a>
-                        </td>
+                        <td>{{car.model}}</td>
                         <td>{{car.color}}</td>
-                        <td>{{car.owner_id}}</td>
+                        <td>{{car.owner.owner_car}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

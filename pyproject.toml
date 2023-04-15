@@ -13,6 +13,9 @@ pytest-django = "^4.5.2"
 django-factory-boy = "^1.0.0"
 coverage = "^7.2.3"
 psycopg2-binary = "^2.9.6"
+django-crispy-forms = "^2.0"
+crispy-bootstrap4 = "^2022.1"
+bootstrap4 = "^0.1.0"
 
 
 [build-system]
