@@ -72,8 +72,3 @@ class Car(models.Model):
                             ('Cinza', 'Cinza')
                             ))
     owner = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
-
-    @property
-    def status_owner_car(self) -> bool:
-        if self.owner:
-            Person.owner_car = True

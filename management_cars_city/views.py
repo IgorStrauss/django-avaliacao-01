@@ -44,10 +44,11 @@ class CreateCar(CreateView):
     fields = ("model", "color", "owner")
 
     @receiver(post_save, sender=Car)
-    def set_owner_true(sender, instance, created, **kwargs):
+    def update_owner_car(sender, instance, created, **kwargs):
         if created:
-            instance.owner.owner = True
-            instance.owner.save()
+            person = instance.owner
+            person.owner_car = True
+            person.save()
 
 
 def owners_car(request):
