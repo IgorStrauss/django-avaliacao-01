@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-</title>Persons</title>
+{% block 'title' %}Lista de pessoas{% endblock %}
 
 {% block 'content' %}
 <div class="container">
@@ -39,7 +39,7 @@
                         <td>{{person.email}}</td>
                         <td>{{person.format_celular}}</td>
                         <td>{{person.format_cpf}}</td>
-                        <td>{{person.format_date}}</td>
+                        <td>{{person.created}}</td>
                         <td>{{person.format_status_owner_car}}</td>
                     </tr>
                     {% endfor %}

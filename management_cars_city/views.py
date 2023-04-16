@@ -21,9 +21,9 @@ class CreatePerson(CreateView):
     fields = ("name", "lastname", "email", "cpf", "cellphone")
 
 
-def persons(request):
+def persons(self):
     persons = Person.objects.order_by('-id')
-    return render(request, 'persons.html', {'persons': persons})
+    return render(self, 'persons.html', {'persons': persons})
 
 
 def sales_opportunity(request):
@@ -44,10 +44,11 @@ class CreateCar(CreateView):
     fields = ("model", "color", "owner")
 
     @receiver(post_save, sender=Car)
-    def set_owner_true(sender, instance, created, **kwargs):
+    def update_owner_car(sender, instance, created, **kwargs):
         if created:
-            instance.owner.owner = True
-            instance.owner.save()
+            person = instance.owner
+            person.owner_car = True
+            person.save()
 
 
 def owners_car(request):
@@ -56,7 +57,8 @@ def owners_car(request):
                   {'cars': cars})
 
 
-# def owner_car_id(request, owner_id):
-#     ownercar = Car.objects.get(id=owner_id)
-#     return render(request, 'owner_car_id.html',
-#                   {'ownercar': ownercar})
+def persons_cars(request, person_id):
+    person = Person.objects.get(id=person_id)
+    car_count = person.car_set.count()
+    context = {'person': person, 'car_count': car_count}
+    return render(request, 'person_cars.html', context)
