@@ -132,3 +132,12 @@ base.html
       </div>
     </div>
   </form>
+
+consulta em bd 
+    SELECT p.id, p.name, c.owner_id, c.model, c.color
+	FROM public.management_cars_city_person p
+	inner join
+	public.management_cars_city_car c
+	on
+	owner_id = p.id
+	where p.id = 13

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-</title>Oportunity</title>
+{% block 'title' %}Oportunidade{% endblock %}
 
 {% block 'content' %}
 <div class="container">
@@ -21,7 +21,7 @@
                     <th>Owner_car</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody> 
                 {% for person in persons %}
                 <tr>
                     <td>{{person.id}}</td>

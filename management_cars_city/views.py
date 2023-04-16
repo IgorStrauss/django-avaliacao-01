@@ -21,9 +21,9 @@ class CreatePerson(CreateView):
     fields = ("name", "lastname", "email", "cpf", "cellphone")
 
 
-def persons(request):
+def persons(self):
     persons = Person.objects.order_by('-id')
-    return render(request, 'persons.html', {'persons': persons})
+    return render(self, 'persons.html', {'persons': persons})
 
 
 def sales_opportunity(request):
@@ -57,7 +57,8 @@ def owners_car(request):
                   {'cars': cars})
 
 
-# def owner_car_id(request, owner_id):
-#     ownercar = Car.objects.get(id=owner_id)
-#     return render(request, 'owner_car_id.html',
-#                   {'ownercar': ownercar})
+def persons_cars(request, person_id):
+    person = Person.objects.get(id=person_id)
+    car_count = person.car_set.count()
+    context = {'person': person, 'car_count': car_count}
+    return render(request, 'person_cars.html', context)

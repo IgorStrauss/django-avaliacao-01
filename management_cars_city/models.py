@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django.db import models
-from django.forms import ValidationError
 
 
 class Person(models.Model):
@@ -20,7 +19,7 @@ class Person(models.Model):
         verbose_name="Celular",
     )
     created = models.DateTimeField(
-        auto_now_add=False,
+        auto_now_add=True,
         verbose_name="Cadastrado em:",
     )
     owner_car = models.BooleanField(default=False, blank=False, null=False)
@@ -51,7 +50,6 @@ class Person(models.Model):
 
     @property
     def format_date(self):
-        self.created = datetime.now()
         return f"{self.created.day}/{self.created.month}/{self.created.year}\
             | {self.created.hour}:{self.created.minute}"
 
@@ -72,3 +70,4 @@ class Car(models.Model):
                             ('Cinza', 'Cinza')
                             ))
     owner = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
+
