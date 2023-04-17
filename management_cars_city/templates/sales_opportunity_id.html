@@ -3,6 +3,9 @@
 {% block 'title' %}Op | {{person.id}}{% endblock %}
 
 {% block 'content' %}
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -21,7 +24,7 @@
                 <dd>{{ person.created }}</dd>
 
                 <dt>Possui veículo</dt>
-                <dd>{{ person.owner_car }}</dd>
+                <dd>{{ person.format_status_owner_car }}</dd>
 
                 <dt> <a href="{% url 'management_cars_city:oportunidade_venda' %}" class="btn btn-outline-info">Retornar á lista</a> </dt>
                 <dd>

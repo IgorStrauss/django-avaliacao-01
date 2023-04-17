@@ -16,4 +16,7 @@ urlpatterns = [path("", views.index_first, name="index"),
                     name='create_person'),
                path("<int:pk>", views.sales_opportunity_id,
                     name='sales'),
-               path("persons-cars/<int:person_id>", views.persons_cars, name='contagem')]
+               path("persons-cars/<int:person_id>", views.persons_cars,
+                    name='contagem'),
+               path("update/<int:pk>", views.UpdatePerson.as_view(),
+                    name='update_person')]

@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{person.id}}</td>
                         <td>
-                            <a href="#">{{person.format_name}}</a>
+                            <a href="{% url 'management_cars_city:update_person' person.id %}">{{person.format_name}}</a>
                         </td>
                         <td>{{person.format_last_name}}</td>
                         <td>{{person.email}}</td>

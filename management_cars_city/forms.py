@@ -24,3 +24,4 @@ class CarForm(forms.Form):
     model = forms.ChoiceField(choices=model_choices)
     color = forms.ChoiceField(choices=color_choices)
     owner = forms.CharField()
+
