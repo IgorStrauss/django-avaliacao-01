@@ -26,6 +26,12 @@ def persons(self):
     return render(self, 'persons.html', {'persons': persons})
 
 
+def search(request):
+    termo = request.GET.get('termo')
+    persons = Person.objects.order_by('-id').filter(cpf=termo)
+    return render(request, 'search.html', {'persons': persons})
+
+
 def sales_opportunity(request):
     persons = Person.objects.order_by('-id').filter(owner_car=False)
     return render(request, 'sales_opportunity.html', {'persons': persons})
@@ -62,9 +68,9 @@ class CreateCar(CreateView):
             person.save()
 
 
-def owners_car(request):
+def owners_car(self):
     cars = Car.objects.select_related('owner').all()
-    return render(request, 'owner_cars.html',
+    return render(self, 'owner_cars.html',
                   {'cars': cars})
 
 

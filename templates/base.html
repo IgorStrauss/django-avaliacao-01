@@ -13,9 +13,9 @@
 
     <div class="container">
         <div class="row">
-            <form class="d-flex" role="search" method="get" action="">
+            <form class="d-flex" role="search" method="get" action="{% url 'management_cars_city:pesquisar' %}">
                 <input class="form-control me-2 mt-2 mb-1" type="search" placeholder="Pesquisar por CPF"
-                    aria-label="Search" name="termo">
+                    aria-label="Search" name="termo" value="{{request.GET.termo}}">
                 <button class="btn btn-outline-success mt-2 mb-1" type="submit">Pesquisar</button>
             </form>
 

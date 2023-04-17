@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import Car, Person
+
 
 class PersonForm(forms.Form):
     name = forms.CharField(max_length=15)
@@ -23,5 +25,10 @@ class CarForm(forms.Form):
 
     model = forms.ChoiceField(choices=model_choices)
     color = forms.ChoiceField(choices=color_choices)
-    owner = forms.CharField()
+    owner = forms.ModelChoiceField(queryset=Person.objects.all(),
+                                   label='Owner Name', empty_label=None,
+                                   to_field_name='name')
 
+    class Meta:
+        model = Car
+        fields = '__all__'
