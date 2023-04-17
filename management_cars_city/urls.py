@@ -19,4 +19,6 @@ urlpatterns = [path("", views.index_first, name="index"),
                path("persons-cars/<int:person_id>", views.persons_cars,
                     name='contagem'),
                path("update/<int:pk>", views.UpdatePerson.as_view(),
-                    name='update_person')]
+                    name='update_person'),
+               path("search/",views.search, name='pesquisar'),
+               ]

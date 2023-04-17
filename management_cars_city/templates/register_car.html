@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+{% block 'title' %}Registrar carro{% endblock %}
 
-</head>
+{% block 'content' %}
 
 <body>
     <div class="container">
@@ -15,17 +10,20 @@
             <h1>Cadastrar carro | usuário</h1>
         </center>
 
-        <form action="{% url 'management_cars_city:register_car' %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+        <form action="{% url 'management_cars_city:register_car' %}" method="post" class="form" autocomplete="off"
+            enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-outline-info">Cadastrar</button>
         </form>
+        <button><a href="{% url 'management_cars_city:listar_pessoas' %}" class="btn btn-primary">Retornar á
+                lista</a>
+        </button>
     </div>
 </body>
 
-</html>
 
 
-</body>
 
-</html>
+
+{% endblock %}

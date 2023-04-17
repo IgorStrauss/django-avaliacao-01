@@ -1,6 +1,5 @@
-from datetime import datetime
-
 from django.db import models
+from django.forms import ValidationError
 
 
 class Person(models.Model):
@@ -49,13 +48,11 @@ class Person(models.Model):
         return f"{self.cpf[:3]}-{self.cpf[3:6]}-{self.cpf[6:9]}.{self.cpf[9:11]}"
 
     @property
-    def format_date(self):
-        return f"{self.created.day}/{self.created.month}/{self.created.year}\
-            | {self.created.hour}:{self.created.minute}"
-
-    @property
     def format_status_owner_car(self):
         return 'Sim' if self.owner_car else 'Não'
+
+    def __repr__(self) -> str:
+        return self.name
 
 
 class Car(models.Model):
@@ -71,3 +68,12 @@ class Car(models.Model):
                             ))
     owner = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
 
+    def __repr__(self):
+        return '<Car %r>' % self.owner_id
+
+    class Meta:
+        unique_together = ('owner', 'color', 'model')
+
+    def clean(self):
+        if self.owner.car_set.count() >= 3:
+            raise ValidationError('Já possui número máximo de veículos')
