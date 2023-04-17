@@ -1,9 +1,9 @@
-#from django.http import HttpResponse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from .forms import CarForm, PersonForm
 from .models import Car, Person
@@ -32,8 +32,19 @@ def sales_opportunity(request):
 
 
 def sales_opportunity_id(request, pk):
-    person = Person.objects.get(id=pk)
+    person = get_object_or_404(Person, id=pk)
+
+    if not person.id:
+        raise Http404()
+
     return render(request, 'sales_opportunity_id.html', {'person': person})
+
+
+class UpdatePerson(UpdateView):
+    model = Person
+    fields = ["name", "lastname", "email", "cellphone"]
+    success_url = reverse_lazy("management_cars_city:listar_pessoas")
+    template_name = "update_person.html"
 
 
 class CreateCar(CreateView):

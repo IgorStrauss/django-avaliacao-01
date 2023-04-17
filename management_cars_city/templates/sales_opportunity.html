@@ -3,6 +3,7 @@
 {% block 'title' %}Oportunidade{% endblock %}
 
 {% block 'content' %}
+
 <div class="container">
     <div class=" row">
     <div class=" col-lg-12">
@@ -18,7 +19,7 @@
                     <th>Telefone</th>
                     <th>CPF</th>
                     <th>Cadastrado em</th>
-                    <th>Owner_car</th>
+                    <th>Possui veículo</th>
                 </tr>
             </thead>
             <tbody> 
@@ -32,7 +33,7 @@
                     <td>{{person.email}}</td>
                     <td>{{person.format_celular}}</td>
                     <td>{{person.format_cpf}}</td>
-                    <td>{{person.format_date}}</td>
+                    <td>{{person.created}}</td>
                     <td>{{person.format_status_owner_car}}</td>
                 </tr>
                 {% endfor %}
