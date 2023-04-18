@@ -17,12 +17,12 @@
                         <th>ID carro</th>
                         <th>Modelo</th>
                         <th>Cor</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for car in cars %}
                     <tr>
+
                         <td><a href="{% url 'management_cars_city:contagem' car.owner_id %}">{{car.owner_id}}</a>
                         </td>
                         <td>{{car.owner.format_name}}</td>
@@ -30,8 +30,6 @@
                         <td>{{car.id}}</td>
                         <td>{{car.model}}</td>
                         <td>{{car.color}}</td>
-                        <td>{{car.owner.owner_car}}</td>
-                        <td>{{car.owner.count_car_owner_id}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

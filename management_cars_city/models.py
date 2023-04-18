@@ -1,5 +1,5 @@
+from django.core.exceptions import ValidationError
 from django.db import models
-from django.forms import ValidationError
 
 
 class Person(models.Model):
@@ -56,20 +56,23 @@ class Person(models.Model):
 
 
 class Car(models.Model):
-    model = models.CharField(choices=(
-                        ('Hatch', 'Hatch'),
-                        ('Sedã', 'Sedã'),
-                        ('Conversivel', 'Conversivel')
-                        ))
-    color = models.CharField(choices=(
-                            ('Amarelo', 'Amarelo'),
-                            ('Azul', 'Azul'),
-                            ('Cinza', 'Cinza')
-                            ))
-    owner = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
+    MODEL_CHOICES = (
+                    ('Hatch', 'Hatch'),
+                    ('Sedã', 'Sedã'),
+                    ('Conversivel', 'Conversivel')
+                    )
 
-    def __repr__(self):
-        return '<Car %r>' % self.owner_id
+    COLOR_CHOICES = (
+                    ('Amarelo', 'Amarelo'),
+                    ('Azul', 'Azul'),
+                    ('Cinza', 'Cinza')
+                    )
+    owner = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
+    model = models.CharField(max_length=12, choices=MODEL_CHOICES)
+    color = models.CharField(max_length=12, choices=COLOR_CHOICES)
+
+    # def __repr__(self):
+    #     return '<Car %r>' % self.owner_id
 
     class Meta:
         unique_together = ('owner', 'color', 'model')
@@ -77,3 +80,10 @@ class Car(models.Model):
     def clean(self):
         if self.owner.car_set.count() >= 3:
             raise ValidationError('Já possui número máximo de veículos')
+
+        if Car.objects.filter(owner=self.owner, model=self.model).exists():
+            raise ValidationError('Esta modelo não pode ser selecionado')
+
+        if Car.objects.filter(owner=self.owner, color=self.color).exists():
+            raise ValidationError(
+                'Esta cor não pode ser selecionada para este veículo')

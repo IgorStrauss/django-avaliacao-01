@@ -7,13 +7,6 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="mt-2">Pessoas cadastradas</h1>
-            <div>
-                <button type="button" class="btn btn-sm btn-outline-dark mb-1"><a
-                        href="{% url 'management_cars_city:create_person' %}">CADASTRAR PESSOA</a></button>
-                <button type="button" class="btn btn-sm btn-outline-dark mb-1"><a
-                        href="{% url 'management_cars_city:register_car' %}">CADASTRAR CARRO</a></button>
-
-            </div>
 
             <table class="table">
                 <thead>
@@ -31,9 +24,11 @@
                 <tbody>
                     {% for person in persons %}
                     <tr>
-                        <td>{{person.id}}</td>
+                        <td> <a href="{% url 'management_cars_city:update_person' person.id %}"
+                                class="btn btn-warning">{{person.id}}</a></td>
                         <td>
-                            <a href="{% url 'management_cars_city:update_person' person.id %}">{{person.format_name}}</a>
+                            <a
+                                href="{% url 'management_cars_city:update_person' person.id %}">{{person.format_name}}</a>
                         </td>
                         <td>{{person.format_last_name}}</td>
                         <td>{{person.email}}</td>

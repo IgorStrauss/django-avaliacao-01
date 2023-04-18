@@ -17,7 +17,7 @@ class CreatePerson(CreateView):
     model = Person
     context = {'form': PersonForm()}
     template_name = "register_person.html"
-    success_url = reverse_lazy("management_cars_city:listar_pessoas")
+    success_url = reverse_lazy("management_cars_city:index")
     fields = ("name", "lastname", "email", "cpf", "cellphone")
 
 
@@ -49,7 +49,7 @@ def sales_opportunity_id(request, pk):
 class UpdatePerson(UpdateView):
     model = Person
     fields = ["name", "lastname", "email", "cellphone"]
-    success_url = reverse_lazy("management_cars_city:listar_pessoas")
+    success_url = reverse_lazy("management_cars_city:index")
     template_name = "update_person.html"
 
 
