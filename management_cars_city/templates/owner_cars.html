@@ -37,6 +37,18 @@
 
         </div>
     </div>
+    <nav aria-label="Navegação de página exemplo">
+        <ul class="pagination">
+            {% for page in cars.paginator.page_range %}
+            {% if cars.number == page %}
+            <li class="page-item active"><a class="page-link" href="?p={{page}}">{{page}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?p={{page}}">{{page}}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    
 </div>
 
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.http import Http404
@@ -21,9 +22,14 @@ class CreatePerson(CreateView):
     fields = ("name", "lastname", "email", "cpf", "cellphone")
 
 
-def persons(self):
+def persons(request):
     persons = Person.objects.order_by('-id')
-    return render(self, 'persons.html', {'persons': persons})
+    paginator = Paginator(persons, 7)
+
+    page = request.GET.get('p')
+    persons = paginator.get_page(page)
+
+    return render(request, 'persons.html', {'persons': persons})
 
 
 def search(request):
@@ -34,6 +40,11 @@ def search(request):
 
 def sales_opportunity(request):
     persons = Person.objects.order_by('-id').filter(owner_car=False)
+    paginator = Paginator(persons, 7)
+
+    page = request.GET.get('p')
+    persons = paginator.get_page(page)
+
     return render(request, 'sales_opportunity.html', {'persons': persons})
 
 
@@ -68,9 +79,14 @@ class CreateCar(CreateView):
             person.save()
 
 
-def owners_car(self):
-    cars = Car.objects.select_related('owner').all()
-    return render(self, 'owner_cars.html',
+def owners_car(request):
+    cars = Car.objects.select_related('owner').order_by('-owner_id').all()
+    paginator = Paginator(cars, 7)
+
+    page = request.GET.get('p')
+    cars = paginator.get_page(page)
+
+    return render(request, 'owner_cars.html',
                   {'cars': cars})
 
 
