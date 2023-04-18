@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block 'title' %}Deletar carro{% endblock %}
+
+{% block 'content' %}
+<div class="container">
+    <div class="row">
+        <div class="col mt-5">
+
+            <h4>Tem certeza que deseja excluir o {{car.model}} cor {{car.color}}
+                ID: {{ car.id }} ?
+            </h4>
+
+            <form action="." method="post">
+                {% csrf_token %}
+
+
+                <input type="submit" class="btn btn-danger mt-3" value="Sim, desejo excluir.">
+                <br />
+                <br />
+                <input type="reset" class="btn btn-info mt-3"
+                    onclick="location.href= '{% url 'management_cars_city:listar_carros_proprietarios' %}'"
+                    value="Não excluir."><br><br><br>
+                <h4>Após clicar em deletar, esta operação não poderá ser desfeita.</h4>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

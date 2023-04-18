@@ -21,4 +21,6 @@ urlpatterns = [path("", views.index_first, name="index"),
                path("update/<int:pk>", views.UpdatePerson.as_view(),
                     name='update_person'),
                path("search/", views.search, name='pesquisar'),
-               ]
+               path('delete/<int:pk>/', views.CarDelete.as_view(),
+                    name='delete'),
+               ]              

@@ -1,39 +1,69 @@
 {% extends 'base.html' %}
 
- 
+
 {% block 'title' %}Perfil | Car{% endblock %}
 
 {% block 'content' %}
 <div class="container">
-    <h1 class="mt-5">{{person.format_name}} {{person.format_last_name}}</h1>
-    <br>
-    <dl>
+    <div class="row">
+        <div class="col mt-3">
+            <h2>{{person.format_name}} {{person.format_last_name}}</h2><br>
 
-        <dt style="color:red">Quantidade de veículos</dt>
-        <dd style="text-align:left;">
-            <h4>{{car_count}}</h4>
-        </dd>
-        <br>
-        <dt>Telefone</dt>
-        <dd>{{person.format_celular}}</dd>
+            <dl>
 
-        <dt>E-mail</dt>
-        <dd>{{person.email}}</dd>
+                <dt style="color:red">Quantidade de veículos</dt>
+                <dd style="text-align:left;">
+                    <h4>{{car_count}}</h4>
+                </dd>
+                <br>
+                <dt>Telefone</dt>
+                <dd>{{person.format_celular}}</dd>
 
-        <dt>ID</dt>
-        <dd>{{person.id}}</dd>
+                <dt>E-mail</dt>
+                <dd>{{person.email}}</dd>
 
-        <dt>username</dt>
-        <dd>{{person.username}}</dd>
+                <dt>ID</dt>
+                <dd>{{person.id}}</dd>
 
-        <dt>Nome comp</dt>
-        <dd>{{person.full_name}}</dd>
+                <dt>username</dt>
+                <dd>{{person.username}}</dd>
 
-        <dt>Data criação</dt>
-        <dd>{{person.created}}</dd>
+                <dt>Nome comp</dt>
+                <dd>{{person.full_name}}</dd>
 
-        <dt> <a href="{% url 'management_cars_city:listar_carros_proprietarios' %}"
-                class="btn btn-outline-info">Retornar á lista</a> </dt>
-    </dl>
+                <dt>Data criação</dt>
+                <dd>{{person.created}}</dd>
+
+                <dt> <a href="{% url 'management_cars_city:listar_carros_proprietarios' %}"
+                        class="btn btn-outline-info">Retornar á lista</a> </dt>
+            </dl>
+        </div>
+        <div class="col">
+            <table class="table mt-3">
+                <thead>
+                    <th>Car ID</th>
+                    <th>Modelo</th>
+                    <th>Cor</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody>
+                    {% if cars %}
+                    {% for car in cars %}
+                    <tr>
+                        <td>{{car.id}}</td>
+                        <td>{{car.model}}</td>
+                        <td>{{car.color}}</td>
+                        <td> <a href="{% url 'management_cars_city:delete' car.id %}"
+                                class="btn btn-danger">{{car.id}}</a></td>
+
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <h3>Nenhum veículo encontrado</h3>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

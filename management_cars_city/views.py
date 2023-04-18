@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, DeleteView, UpdateView
 
 from .forms import CarForm, PersonForm
 from .models import Car, Person
@@ -92,6 +92,18 @@ def owners_car(request):
 
 def persons_cars(request, person_id):
     person = Person.objects.get(id=person_id)
+    cars = Car.objects.filter(owner=person_id)
     car_count = person.car_set.count()
-    context = {'person': person, 'car_count': car_count}
+    context = {'person': person, 'cars': cars, 'car_count': car_count}
     return render(request, 'person_cars.html', context)
+
+
+class CarDelete(DeleteView):
+    model = Car
+    success_url = reverse_lazy('management_cars_city:listar_carros_proprietarios')
+    template_name = 'delete_car.html'
+# def persons_cars(request, person_id):
+#     person = Person.objects.get(id=person_id)
+#     car_count = person.car_set.count()
+#     context = {'person': person, 'car_count': car_count}
+#     return render(request, 'person_cars.html', context)
