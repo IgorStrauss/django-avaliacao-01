@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block 'title' %}MAIG{% endblock %}
+{% block 'content' %}
+<div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item ">
+                <a href="https://igorstrauss.github.io/marquesigor.github.io/"
+                    class="btn btn-outline-info">Portfólio</a>
+            </li>
+            <li class="nav-item ml-2">
+                <a href="https://www.linkedin.com/in/igor-senna-a336bb181" class="btn btn-outline-info">Linkedin</a>
+            </li>
+            <li class="nav-item ml-2">
+                <a href="https://github.com/IgorStrauss" class="btn btn-outline-info">Github</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body" style="background-color: aquamarine;">
+        <h5 class="card-title">Projeto restrição de carros por pessoa </h5>
+        <p class="card-text">Sistema para gerenciamento de quantidade de veículos por pessoa | Cada pessoa só poderá ter
+            até 03 veículos cadastrados em seu ID</p>
+        <p>Para esta situação, somente existem 03 modelos disponíveis [HATCH / SEDÃ / CONVERSÍVEL]
+            e 03 cores disponíveis [AMARELO / AZUL / CINZA]</p>
+        <p>Cada pessoa pode ter até 03 veículos, porém, não pode haver repetição de modelo e de cor</p>
+        <p>Para este projeto foi utilizado: Python, Django, Postgresql, Dockerfile, Docker-compose, Poetry e Unittest.
+        </p>
+        <p>TODOS OS DADOS CONTIDOS NESTE PROJETO, SÃO FICTICIOS, PARA FINS EDUCACIONAIS, NÃO REPRESENTANDO RISCOS DE
+            INTEGRIDADE</p>
+    </div>
+</div>
+
+<div class="col">
+    <div class="row">
+        <div class="card border-info mb-3 mt-1 ml-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Lista de pessoas</h5>
+                <hr>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">Apresenta lista de pessoas cadastradas, independente
+                    de possuir veículos cadastrados.
+                </p>
+                <a href="{%url 'management_cars_city:listar_pessoas'%}" class="btn btn-outline-info">Listar</a>
+            </div>
+        </div>
+        <div class="card border-success mb-3 mt-1 ml-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Proprietários de veículos</h5>
+                <hr>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">Apresenta lista de pessoas que possuem veículo(s)
+                    cadastrados.
+                </p>
+                <a href="{%url 'management_cars_city:listar_carros_proprietarios'%}"
+                    class="btn btn-outline-info mt-4">Listar</a>
+            </div>
+        </div>
+        <div class="card border-danger mb-3 mt-1 ml-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Oportunidade de venda</h5>
+                <hr>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">Apresenta lista de pessoas que NÃO possuem veículos
+                    cadastrados.
+                </p>
+                <a href="{%url 'management_cars_city:oportunidade_venda'%}" class="btn btn-outline-info ">Oportunidade
+                    de venda</a>
+            </div>
+        </div>
+        <div class="card border-success mb-3 mt-1 ml-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Cadastrar pessoa</h5>
+                <hr>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">Formulário para cadastrar pessoa.
+                </p>
+                <a href="{%url 'management_cars_city:create_person'%}" class="btn btn-outline-info mt-5">Cadastrar
+                    pessoa</a>
+            </div>
+        </div>
+        <div class="card border-secondary mb-3 mt-1 ml-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Cadastrar veículo</h5>
+                <hr>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <p class="card-text">Formulário para cadastrar veículo vinculado
+                    a uma pessoa.
+                </p>
+                <a href="{%url 'management_cars_city:register_car'%}" class="btn btn-outline-info mt-4">Cadastrar
+                    veículo</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

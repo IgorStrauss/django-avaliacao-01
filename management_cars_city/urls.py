@@ -20,5 +20,5 @@ urlpatterns = [path("", views.index_first, name="index"),
                     name='contagem'),
                path("update/<int:pk>", views.UpdatePerson.as_view(),
                     name='update_person'),
-               path("search/",views.search, name='pesquisar'),
+               path("search/", views.search, name='pesquisar'),
                ]
