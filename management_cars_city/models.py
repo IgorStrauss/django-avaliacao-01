@@ -51,7 +51,7 @@ class Person(models.Model):
     def format_status_owner_car(self):
         return 'Sim' if self.owner_car else 'Não'
 
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         return self.name
 
 
@@ -71,8 +71,8 @@ class Car(models.Model):
     model = models.CharField(max_length=12, choices=MODEL_CHOICES)
     color = models.CharField(max_length=12, choices=COLOR_CHOICES)
 
-    # def __repr__(self):
-    #     return '<Car %r>' % self.owner_id
+    def __str__(self):
+        return self.owner.name
 
     class Meta:
         unique_together = ('owner', 'color', 'model')
@@ -82,7 +82,7 @@ class Car(models.Model):
             raise ValidationError('Já possui número máximo de veículos')
 
         if Car.objects.filter(owner=self.owner, model=self.model).exists():
-            raise ValidationError('Esta modelo não pode ser selecionado')
+            raise ValidationError('Este modelo não pode ser selecionado')
 
         if Car.objects.filter(owner=self.owner, color=self.color).exists():
             raise ValidationError(

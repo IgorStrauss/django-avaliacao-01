@@ -28,3 +28,6 @@ build:
 
 stop:
 	docker compose stop
+
+re:
+	docker compose restart

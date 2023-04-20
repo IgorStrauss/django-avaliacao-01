@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block 'title' %}Perfil | Car{% endblock %}
+{% block 'title' %}Profile {{person.full_name}}{% endblock %}
 
 {% block 'content' %}
 <div class="container">
@@ -53,7 +53,7 @@
                         <td>{{car.id}}</td>
                         <td>{{car.model}}</td>
                         <td>{{car.color}}</td>
-                        <td> <a href="{% url 'management_cars_city:delete' car.id %}"
+                        <td> <a href="{% url 'management_cars_city:delete_car' car.id %}"
                                 class="btn btn-danger">{{car.id}}</a></td>
 
                     </tr>

@@ -146,6 +146,17 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "model-bakery"
+version = "1.11.0"
+description = "Smart object creation facility for Django."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+django = ">=3.2"
+
+[[package]]
 name = "packaging"
 version = "23.0"
 description = "Core utilities for Python packages"
@@ -261,7 +272,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "433061594068b595f8edef1e9c8f43dc164fda5d181f3be600de0216a9d26940"
+content-hash = "07179178008bffc9ed6554e4b32be054112e0be9a33e6bcf24da7b67fa324105"
 
 [metadata.files]
 asgiref = [
@@ -377,6 +388,10 @@ faker = [
 iniconfig = [
     {file = "iniconfig-2.0.0-py3-none-any.whl", hash = "sha256:b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374"},
     {file = "iniconfig-2.0.0.tar.gz", hash = "sha256:2d91e135bf72d31a410b17c16da610a82cb55f6b0477d1a902134b24a455b8b3"},
+]
+model-bakery = [
+    {file = "model_bakery-1.11.0-py3-none-any.whl", hash = "sha256:d38a72502979be20c9c5c2b1682faefde9da4eae935c028cc35832d484ea1039"},
+    {file = "model_bakery-1.11.0.tar.gz", hash = "sha256:d516d93315f66fc7f2cef0a85e1ca9e1ebb656cca5e383f17127f023b4bbdb8c"},
 ]
 packaging = [
     {file = "packaging-23.0-py3-none-any.whl", hash = "sha256:714ac14496c3e68c99c29b00845f7a2b85f3bb6f1078fd9f72fd20f0570002b2"},
