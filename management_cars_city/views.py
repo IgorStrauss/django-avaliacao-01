@@ -28,8 +28,9 @@ def persons(request):
 
     page = request.GET.get('p')
     persons = paginator.get_page(page)
+    context = {'persons': persons}
 
-    return render(request, 'persons.html', {'persons': persons})
+    return render(request, 'persons.html', context)
 
 
 def search(request):
@@ -41,20 +42,21 @@ def search(request):
 def sales_opportunity(request):
     persons = Person.objects.order_by('-id').filter(owner_car=False)
     paginator = Paginator(persons, 7)
-
+    context = {'persons': persons}
     page = request.GET.get('p')
     persons = paginator.get_page(page)
 
-    return render(request, 'sales_opportunity.html', {'persons': persons})
+    return render(request, 'sales_opportunity.html', context)
 
 
 def sales_opportunity_id(request, pk):
     person = get_object_or_404(Person, id=pk)
+    context = {'persons': persons}
 
     if not person.id:
         raise Http404()
 
-    return render(request, 'sales_opportunity_id.html', {'person': person})
+    return render(request, 'sales_opportunity_id.html', context)
 
 
 class UpdatePerson(UpdateView):
@@ -82,12 +84,12 @@ class CreateCar(CreateView):
 def owners_car(request):
     cars = Car.objects.select_related('owner').order_by('-owner_id').all()
     paginator = Paginator(cars, 7)
-
+    context = {'cars': cars}
     page = request.GET.get('p')
     cars = paginator.get_page(page)
 
     return render(request, 'owner_cars.html',
-                  {'cars': cars})
+                  context)
 
 
 def persons_cars(request, person_id):
@@ -102,8 +104,3 @@ class CarDelete(DeleteView):
     model = Car
     success_url = reverse_lazy('management_cars_city:listar_carros_proprietarios')
     template_name = 'delete_car.html'
-# def persons_cars(request, person_id):
-#     person = Person.objects.get(id=person_id)
-#     car_count = person.car_set.count()
-#     context = {'person': person, 'car_count': car_count}
-#     return render(request, 'person_cars.html', context)

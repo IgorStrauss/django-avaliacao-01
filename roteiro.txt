@@ -141,3 +141,25 @@ consulta em bd
 	on
 	owner_id = p.id
 	where p.id = 13
+     
+
+     self.car_1 = Car.objects.create(
+            owner=self.person_1,
+            model='Hatch',
+            color='Amarelo'
+        )
+        self.car_2 = Car.objects.create(
+            owner=self.person_1,
+            model='Hatch',
+            color='Azul'
+        )
+        self.car_3 = Car.objects.create(
+            owner=self.person_1,
+            model='Sedã',
+            color='Azul'
+        )
+        self.car_4 = Car.objects.create(
+            owner=self.person_2,
+            model='Conversivel',
+            color='Cinza'
+        )
