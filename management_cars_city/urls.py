@@ -14,7 +14,7 @@ urlpatterns = [path("", views.index_first, name="index"),
                     name='register_car'),
                path("create-person", views.CreatePerson.as_view(),
                     name='create_person'),
-               path("<int:pk>/", views.sales_opportunity_id,
+               path("<int:pk>/", views.sales_oportunity_id,
                     name='sales'),
                path("persons-cars/<int:person_id>/", views.persons_cars,
                     name='contagem'),
@@ -23,5 +23,4 @@ urlpatterns = [path("", views.index_first, name="index"),
                path("search/", views.search, name='pesquisar'),
                path('delete-car/<int:pk>/', views.CarDelete.as_view(),
                     name='delete_car'),
-               ]              
- 
+               ]

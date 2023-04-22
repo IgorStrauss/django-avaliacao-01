@@ -11,6 +11,7 @@ from .models import Car, Person
 
 
 def index_first(request):
+    """Página inicial"""
     return render(request, 'index_first.html')
 
 
@@ -23,6 +24,7 @@ class CreatePerson(CreateView):
 
 
 def persons(request):
+    """Lista todas as pessoas cadastradas, independente de possuir veículos"""
     persons = Person.objects.order_by('-id')
     paginator = Paginator(persons, 7)
 
@@ -34,25 +36,26 @@ def persons(request):
 
 
 def search(request):
+    """View para pesquisa de pessoas cadastradas - exclusivo para CPF"""
     termo = request.GET.get('termo')
     persons = Person.objects.order_by('-id').filter(cpf=termo)
     return render(request, 'search.html', {'persons': persons})
 
 
 def sales_opportunity(request):
+    """Renderiza lista de todas as pessoas que ainda não possuem veículo"""
     persons = Person.objects.order_by('-id').filter(owner_car=False)
     paginator = Paginator(persons, 7)
-    context = {'persons': persons}
     page = request.GET.get('p')
     persons = paginator.get_page(page)
-
+    context = {'persons': persons}
     return render(request, 'sales_opportunity.html', context)
 
 
-def sales_opportunity_id(request, pk):
+def sales_oportunity_id(request, pk):
+    """Renderiza pessoa cadastrada que ainda não possui veículo"""
     person = get_object_or_404(Person, id=pk)
-    context = {'persons': persons}
-
+    context = {'person': person}
     if not person.id:
         raise Http404()
 
@@ -82,6 +85,7 @@ class CreateCar(CreateView):
 
 
 def owners_car(request):
+    """Renderiza todos os proprietários de veículos"""
     cars = Car.objects.select_related('owner').order_by('-owner_id').all()
     paginator = Paginator(cars, 7)
     context = {'cars': cars}
@@ -93,6 +97,7 @@ def owners_car(request):
 
 
 def persons_cars(request, person_id):
+    """Renderiza proprietário de veículo(s) com informações pessoais e dados do(s) veículo(s)"""
     person = Person.objects.get(id=person_id)
     cars = Car.objects.filter(owner=person_id)
     car_count = person.car_set.count()
