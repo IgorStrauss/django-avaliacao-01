@@ -29,19 +29,23 @@ class UrlsTestApp(TestCase):
         self.assertEqual(create_person_url, '/create-person')
 
     def test_url_sales_opportunity_id_is_correct(self):
-        sales_opportunity_id_url = reverse('management_cars_city:sales', args=[2])
+        sales_opportunity_id_url = reverse(
+            'management_cars_city:sales', args=[2])
         self.assertEqual(sales_opportunity_id_url, '/2/')
 
     def test_url_profile_car_owner_id_is_correct(self):
-        url_profile_car_owner_id_url = reverse('management_cars_city:contagem', args=[2])
+        url_profile_car_owner_id_url = reverse(
+            'management_cars_city:contagem', args=[2])
         self.assertEqual(url_profile_car_owner_id_url, '/persons-cars/2/')
 
     def test_url_update_person_id_is_correct(self):
-        url_update_person_id_url = reverse('management_cars_city:update_person', args=[2])
+        url_update_person_id_url = reverse(
+            'management_cars_city:update_person', args=[2])
         self.assertEqual(url_update_person_id_url, '/update/2/')
 
     def test_url_delete_car_id_is_correct(self):
-        url_delete_car_id_url = reverse('management_cars_city:delete_car', args=[2])
+        url_delete_car_id_url = reverse('management_cars_city:delete_car',
+                                        args=[2])
         self.assertEqual(url_delete_car_id_url, '/delete-car/2/')
 
     def test_url_search_return_is_ok(self):
