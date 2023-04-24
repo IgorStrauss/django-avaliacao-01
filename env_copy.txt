@@ -1,0 +1,14 @@
+# Postgres
+POSTGRES_SERVER=db
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=cars_city
+
+#pgadmin
+PGADMIN_DEFAULT_EMAIL=admin@admin.com
+PGADMIN_DEFAULT_PASSWORD=admin
+
+# Backend
+DEBUG=True
+DJANGO_PROJECT_NAME=cars_city
+SECRET_KEY=changethis-very-secret-key
