@@ -18,6 +18,9 @@ crispy-bootstrap4 = "^2022.1"
 bootstrap4 = "^0.1.0"
 pytz = "^2023.3"
 model-bakery = "^1.11.0"
+djangorestframework = "^3.14.0"
+markdown = "^3.4.3"
+django-filter = "^23.1"
 
 
 [build-system]
