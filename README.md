@@ -42,14 +42,14 @@ O pgadmin estará em localhost:5050
     mensagem na tela que já possui numero máximo de carros permitido.
 
 Carros
-    Criar categorias:
-        Cores: Amarelo
-               Azul
-               Cinza
+Criar categorias:
+    Cores: Amarelo
+            Azul
+            Cinza
 
-        Modelo: Hatch
-                Sedã
-                Conversivel
+    Modelo: Hatch
+            Sedã
+            Conversivel
 
 Não pode existir carros cadastrados sem proprietários
 
