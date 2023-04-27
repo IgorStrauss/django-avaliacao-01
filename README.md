@@ -1,11 +1,11 @@
 
-Python3.11
-Poetry == 1.2.2
-Django == 4.2
-PostgreSQL
-pgadmin
-Dockerfile
-Docker-compose
+ - Python3.11
+ - Poetry == 1.2.2
+ - Django == 4.2
+ - PostgreSQL
+ - pgadmin
+ - Dockerfile
+ - Docker-compose
 
 Após clonar o projeto, inicializar seu ambiente virtual,
 digitar o comando 
