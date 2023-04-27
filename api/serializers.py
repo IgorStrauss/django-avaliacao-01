@@ -13,7 +13,9 @@ class PersonSerializer(serializers.ModelSerializer):
             'email',
             'cpf',
             'cellphone',
-            'owner_car'
+            'owner_car',
+            'full_name',
+            'username',
         ]
 
 

@@ -8,11 +8,13 @@ class Person(models.Model):
     lastname = models.CharField(
         max_length=15, blank=False, null=False, verbose_name="Sobrenome"
     )
-    email = models.EmailField(blank=False, null=False, verbose_name="E-mail")
-    cpf = models.CharField(max_length=14, blank=False, null=False,
+    email = models.EmailField(unique=True, blank=False,
+                              null=False, verbose_name="E-mail")
+    cpf = models.CharField(max_length=14, unique=True, blank=False, null=False,
                            verbose_name="CPF")
     cellphone = models.CharField(
         max_length=15,
+        unique=True,
         blank=False,
         null=False,
         verbose_name="Celular",
