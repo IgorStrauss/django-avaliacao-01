@@ -74,7 +74,7 @@ class Car(models.Model):
     color = models.CharField(max_length=12, choices=COLOR_CHOICES)
 
     def __str__(self):
-        return self.owner.name
+        return (f'{self.owner.id}|{self.owner.full_name}')
 
     class Meta:
         unique_together = ('owner', 'color', 'model')

@@ -8,6 +8,7 @@ from django.views.generic import CreateView, DeleteView, UpdateView
 
 from .forms import CarForm, PersonForm
 from .models import Car, Person
+from .service import CarService, PersonService
 
 
 def index_first(request):
@@ -24,14 +25,10 @@ class CreatePerson(CreateView):
 
 
 def persons(request):
-    """Lista todas as pessoas cadastradas, independente de possuir veículos"""
-    persons = Person.objects.order_by('-id')
-    paginator = Paginator(persons, 7)
-
-    page = request.GET.get('p')
-    persons = paginator.get_page(page)
+    """Lista todas as pessoas cadastradas. service.py"""
+    list_persons_service = PersonService()
+    persons = list_persons_service.list_persons_with_paginated(request)
     context = {'persons': persons}
-
     return render(request, 'persons.html', context)
 
 
@@ -43,22 +40,20 @@ def search(request):
 
 
 def sales_opportunity(request):
-    """Renderiza lista de todas as pessoas que ainda não possuem veículo"""
-    persons = Person.objects.order_by('-id').filter(owner_car=False)
-    paginator = Paginator(persons, 7)
-    page = request.GET.get('p')
-    persons = paginator.get_page(page)
+    """Listar oportunidades de vendas. service.py"""
+    list_all_persons_sales_op = PersonService()
+    persons = list_all_persons_sales_op.\
+        list_all_persons_with_sales_oportunity(request)
     context = {'persons': persons}
     return render(request, 'sales_opportunity.html', context)
 
 
 def sales_oportunity_id(request, pk):
-    """Renderiza pessoa cadastrada que ainda não possui veículo"""
-    person = get_object_or_404(Person, id=pk)
+    """Listar person_id em oportunidade de venda. service.py"""
+    list_id_person_sales_op = PersonService()
+    person = list_id_person_sales_op.\
+        list_person_id_with_sales_oportunity(request, pk)
     context = {'person': person}
-    if not person.id:
-        raise Http404()
-
     return render(request, 'sales_opportunity_id.html', context)
 
 
@@ -78,30 +73,24 @@ class CreateCar(CreateView):
 
     @receiver(post_save, sender=Car)
     def update_owner_car(sender, instance, created, **kwargs):
+        """Atualiza status owner_car para True quando criado objeto carro em
+        seu person_ID. service.py"""
         if created:
-            person = instance.owner
-            person.owner_car = True
-            person.save()
+            CarService.receiver_update_owner_car(instance, **kwargs)
 
 
 def owners_car(request):
-    """Renderiza todos os proprietários de veículos"""
-    cars = Car.objects.select_related('owner').order_by('-owner_id').all()
-    paginator = Paginator(cars, 7)
+    """Listar todos proprietários de veículos. service.py"""
+    list_all_owner_c = CarService()
+    cars = list_all_owner_c.list_all_owner_car(request)
     context = {'cars': cars}
-    page = request.GET.get('p')
-    cars = paginator.get_page(page)
-
-    return render(request, 'owner_cars.html',
-                  context)
+    return render(request, 'owner_cars.html', context)
 
 
 def persons_cars(request, person_id):
-    """Renderiza proprietário de veículo(s) com informações pessoais e dados do(s) veículo(s)"""
-    person = Person.objects.get(id=person_id)
-    cars = Car.objects.filter(owner=person_id)
-    car_count = person.car_set.count()
-    context = {'person': person, 'cars': cars, 'car_count': car_count}
+    """Listar profile de person_id e detalhes de veículos vinculados
+    a este ID"""
+    context = CarService.list_profile_person_id_with_car(person_id)
     return render(request, 'person_cars.html', context)
 
 

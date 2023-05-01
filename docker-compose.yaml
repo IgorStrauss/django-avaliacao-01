@@ -11,6 +11,9 @@ services:
       - db_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      db_network:
+        ipv4_address: 172.40.0.2
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -20,6 +23,10 @@ services:
       - pgadmin_data:/var/lib/pgadmin
     ports:
       - "5050:80"
+    networks:
+      db_network:
+        ipv4_address: 172.40.0.3
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -29,7 +36,18 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    networks:
+      db_network:
+        ipv4_address: 172.40.0.4
 
 volumes:
   db_data:
   pgadmin_data:
+
+
+networks:
+  db_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.40.0.0/16

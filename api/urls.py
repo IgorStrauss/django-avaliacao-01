@@ -1,4 +1,4 @@
-# from django.urls import include, path
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from api.viewsets import CarViewSet, PersonCarViewSet, PersonViewSet
@@ -9,9 +9,8 @@ router.register(r'cars', CarViewSet, basename='cars')
 router.register(r'person_car', PersonCarViewSet, basename='person-car')
 urlpatterns = router.urls
 
-# urlpatterns = [
-#     path("persons/create/", PersonViewSet.as_view({'post': 'create'})),
-#     path("cars/create/", CarViewSet.as_view({'post': 'create'})),
-#     path("persons/<int:person_id>/cars", ListPersonCar.as_view({'get': 'list'})),
-#     path("", include(router.urls))
-# ]
+urlpatterns = [
+    path("persons/create/", PersonViewSet.as_view({'post': 'create'})),
+    path("cars/create/", CarViewSet.as_view({'post': 'create'})),
+    path("", include(router.urls))
+]
