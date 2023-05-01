@@ -3,16 +3,24 @@ bootstrap4==0.1.0
 coverage==7.2.3
 crispy-bootstrap4==2022.1
 Django==4.2
+-e git+ssh://git@github.com/IgorStrauss/django-avaliacao-01.git@bcda73a90792372d95d80e14d3d4180f900ae88c#egg=django_avaliacao_01
 django-crispy-forms==2.0
 django-factory-boy==1.0.0
 factory-boy==3.2.1
 Faker==18.4.0
+flake8==6.0.0
 iniconfig==2.0.0
+mccabe==0.7.0
+model-bakery==1.11.0
 packaging==23.0
 pluggy==1.0.0
 psycopg2-binary==2.9.6
+pycodestyle==2.10.0
+pyflakes==3.0.1
 pytest==7.3.0
 pytest-django==4.5.2
 python-dateutil==2.8.2
+python-decouple==3.8
+pytz==2023.3
 six==1.16.0
 sqlparse==0.4.3

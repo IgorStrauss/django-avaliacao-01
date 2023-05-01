@@ -31,3 +31,10 @@ stop:
 
 re:
 	docker compose restart
+
+exp:
+	export DB_NAME=cars_city
+	export DB_USER=postgres
+	export DB_PASSWORD=postgres
+	export DB_HOST=172.18.0.2
+	export DB_PORT=5432

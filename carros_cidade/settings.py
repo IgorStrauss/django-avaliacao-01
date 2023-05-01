@@ -83,15 +83,14 @@ WSGI_APPLICATION = "carros_cidade.wsgi.application"
 #     }
 # }
 
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "cars_city",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "172.29.0.2",
-        "PORT": "5432",
+        "NAME": 'cars_city',
+        "USER": 'postgres',
+        "PASSWORD": 'postgres',
+        "HOST": '172.18.0.2',
+        "PORT": 5432,
     }
 }
 

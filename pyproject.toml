@@ -18,6 +18,8 @@ crispy-bootstrap4 = "^2022.1"
 bootstrap4 = "^0.1.0"
 pytz = "^2023.3"
 model-bakery = "^1.11.0"
+python-decouple = "^3.8"
+python-dotenv = "^1.0.0"
 
 
 [build-system]
