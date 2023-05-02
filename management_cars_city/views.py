@@ -1,8 +1,6 @@
-from django.core.paginator import Paginator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView
 
@@ -79,12 +77,12 @@ class CreateCar(CreateView):
             CarService.receiver_update_owner_car(instance, **kwargs)
 
 
-def owners_car(request):
+def owners_car(self):
     """Listar todos proprietários de veículos. service.py"""
     list_all_owner_c = CarService()
-    cars = list_all_owner_c.list_all_owner_car(request)
+    cars = list_all_owner_c.list_all_owner_car(self)
     context = {'cars': cars}
-    return render(request, 'owner_cars.html', context)
+    return render(self, 'owner_cars.html', context)
 
 
 def persons_cars(request, person_id):
