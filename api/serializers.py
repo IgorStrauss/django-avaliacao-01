@@ -1,4 +1,5 @@
-from rest_framework import serializers
+from rest_framework import generics, serializers
+from rest_framework.response import Response
 
 from management_cars_city.models import Car, Person
 
@@ -16,6 +17,17 @@ class PersonSerializer(serializers.ModelSerializer):
             'owner_car',
             'full_name',
             'username',
+        ]
+
+
+class PersonPatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Person
+        fields = [
+            'name',
+            'lastname',
+            'email',
+            'cellphone'
         ]
 
 
