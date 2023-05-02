@@ -8,8 +8,18 @@ from management_cars_city.models import Car, Person
 
 
 class PersonViewSet(viewsets.ModelViewSet):
-    serializer_class = PersonSerializer
     queryset = Person.objects.order_by('-id')
+    serializer_class = PersonSerializer
+
+    @action(detail=True, methods=['patch', 'get'], url_path='update')
+    def partial_update_person(self, request, *args, **kwargs):
+        allowed_fields = ['name', 'lastname', 'email', 'cellphone']
+        data = {k: v for k, v in request.data.items() if k in allowed_fields}
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
 
 
 class CarViewSet(viewsets.ModelViewSet):
