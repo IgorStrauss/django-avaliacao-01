@@ -29,6 +29,18 @@ class CarSerializer(serializers.ModelSerializer):
             'color'
         ]
 
+    def validate(self, data):
+        owner = data.get('owner')
+        model = data.get('model')
+        color = data.get('color')
+        if owner.car_set.count() >= 3:
+            raise serializers.ValidationError('Já possui número máximo de veículos')
+        if Car.objects.filter(owner=owner, model=model).exists():
+            raise serializers.ValidationError('Este modelo não pode ser selecionado')
+        if Car.objects.filter(owner=owner, color=color).exists():
+            raise serializers.ValidationError('Esta cor não pode ser selecionada')
+        return data
+
 
 class PersonCarSerializer(serializers.ModelSerializer):
     cars = serializers.SerializerMethodField()

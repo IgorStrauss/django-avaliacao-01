@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
+from .choices import COLOR_CHOICES, MODEL_CHOICES
+
 
 class Person(models.Model):
     name = models.CharField(max_length=15, blank=False, null=False,
@@ -58,26 +60,15 @@ class Person(models.Model):
 
 
 class Car(models.Model):
-    MODEL_CHOICES = (
-                    ('Hatch', 'Hatch'),
-                    ('Sedã', 'Sedã'),
-                    ('Conversivel', 'Conversivel')
-                    )
-
-    COLOR_CHOICES = (
-                    ('Amarelo', 'Amarelo'),
-                    ('Azul', 'Azul'),
-                    ('Cinza', 'Cinza')
-                    )
     owner = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
     model = models.CharField(max_length=12, choices=MODEL_CHOICES)
     color = models.CharField(max_length=12, choices=COLOR_CHOICES)
 
     def __str__(self):
-        return (f'{self.owner.id}|{self.owner.full_name}')
+        return {self.owner.name}
 
     class Meta:
-        unique_together = ('owner', 'color', 'model')
+        unique_together = ('owner', 'model', 'color')
 
     def clean(self):
         if self.owner.car_set.count() >= 3:

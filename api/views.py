@@ -17,3 +17,7 @@ class ListPerson(generics.ListAPIView):
 class ListCar(generics.ListAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
+
+
+class RegisterCar(generics.CreateAPIView):
+    serializer_class = CarSerializer
