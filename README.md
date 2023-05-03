@@ -14,9 +14,9 @@
 ## Clonando o projeto
 Após clonar o projeto, inicializar seu ambiente virtual, em seguida:
 digitar o comando 
-###    <docker compose build>
+###    docker compose build
 em seguida o comando
-###    <docker compose up>
+###    docker compose up
 
 Os 03 containers estão com IPs definidos no docker-compose e no DB do settings.
 
@@ -55,15 +55,15 @@ O pgadmin estará em localhost:5050
         login = admin@admin.com
         senha = admin
 
-Ao acessar o pgadmin, a senha de conexão:
-    login = postgres
+    Ao acessar o pgadmin, a senha de conexão:
+        login = postgres
 
 
 01 Pessoa pode ter até 03 veículos
 
-    Tabela 1 -> N
-    Se a pessoa que tem 03 veículos tentar comprar outro veículo, receber
-    mensagem na tela que já possui numero máximo de veículos permitido.
+Tabela 1 -> N
+Se a pessoa que tem 03 veículos tentar comprar outro veículo, receber
+mensagem na tela que já possui numero máximo de veículos permitido.
 
 ### Carros
 
