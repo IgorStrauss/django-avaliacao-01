@@ -17,6 +17,7 @@ class PersonSerializer(serializers.ModelSerializer):
             'owner_car',
             'full_name',
             'username',
+            'created'
         ]
 
 
