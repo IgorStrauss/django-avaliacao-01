@@ -14,9 +14,9 @@
 ## Clonando o projeto
 Após clonar o projeto, inicializar seu ambiente virtual, em seguida:
 digitar o comando 
-###    docker compose build
+####    docker compose build
 em seguida o comando
-###    docker compose up
+####    docker compose up
 
 Os 03 containers estão com IPs definidos no docker-compose e no DB do settings.
 
