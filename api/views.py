@@ -21,3 +21,15 @@ class ListCar(generics.ListAPIView):
 
 class RegisterCar(generics.CreateAPIView):
     serializer_class = CarSerializer
+
+
+@action(detail=True, methods=['get'], url_name='ja possue veiculo')
+class ListPersonWithStatusOwnerCar(generics.ListAPIView):
+    serializer_class = PersonSerializer
+    queryset = Person.objects.order_by('-id').filter(owner_car=True)
+
+
+@action(detail=True, methods=['get'], url_name='oportunidade_de_vendas')
+class ListPersonWithoutStatusOwnerCar(generics.ListAPIView):
+    serializer_class = PersonSerializer
+    queryset = Person.objects.order_by('-id').filter(owner_car=False)
