@@ -42,6 +42,18 @@ class CarService:
         person.owner_car = True
         person.save()
 
+    @staticmethod
+    def update_owner_car_delete(instance, **kwargs):
+        person = instance.owner
+        if person.car_set.exclude(pk=instance.pk).count() == 0:
+            person.owner_car = False
+            person.save()
+
+    @staticmethod
+    def update_delete_car(instance):
+        CarService.update_owner_car_delete(instance)
+        instance.delete()
+
     def list_all_owner_car(self, request):
         """Listar todos os proprietários de veículos"""
         cars = Car.objects.select_related('owner').order_by('-owner_id').all()

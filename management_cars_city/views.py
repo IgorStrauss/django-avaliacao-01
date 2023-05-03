@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -75,6 +75,12 @@ class CreateCar(CreateView):
         seu person_ID. service.py"""
         if created:
             CarService.receiver_update_owner_car(instance, **kwargs)
+
+    @receiver(pre_delete, sender=Car)
+    def update_owner_with_delete_car(sender, instance, **kwargs):
+        """Atualiza status owner_car para False quando deletado ultimo carro em
+        seu person_ID. service.py"""
+        CarService.update_owner_car_delete(instance)
 
 
 def owners_car(self):
