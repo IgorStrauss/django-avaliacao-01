@@ -11,12 +11,17 @@
  - Dockerfile
  - Docker-compose
 
-## Clonando o projeto
-Após clonar o projeto, inicializar seu ambiente virtual, em seguida:
-digitar o comando 
-####    docker compose build
-em seguida o comando
-####    docker compose up
+## Clonando e inicializando o projeto
+Após clonar o projeto
+ - Inicializar seu ambiente virtual
+ - Criar arquivo .env (há um arquivo nomeado env_copy.txt) copiar mesmos dados
+ - Digitar comando:
+  - docker compose build, ou (make build)
+Após finalizado processo de gerar as imagens
+ - Digitar comando:
+  - docker compose up, ou (make up)
+
+Após inicializado os 3 containers, já pode acessar o pgadmin e configurar servidor
 
 Os 03 containers estão com IPs definidos no docker-compose e no DB do settings.
 
