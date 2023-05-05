@@ -8,5 +8,4 @@ omit =
     *manage.py*,
     *asgi.py*,
     *wsgi*,
-    *urls*,       
     *__init__.py*,

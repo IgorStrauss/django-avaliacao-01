@@ -10,23 +10,23 @@ class UrlsTestApp(TestCase):
 
     def test_url_persons_is_correct(self):
         persons_url = reverse('management_cars_city:listar_pessoas')
-        self.assertEqual(persons_url, '/persons')
+        self.assertEqual(persons_url, '/persons/')
 
     def test_url_oportunity_is_correct(self):
         oportunity_url = reverse('management_cars_city:oportunidade_venda')
-        self.assertEqual(oportunity_url, '/oportunity')
+        self.assertEqual(oportunity_url, '/oportunity/')
 
     def test_url_owner_is_correct(self):
         owner_url = reverse('management_cars_city:listar_carros_proprietarios')
-        self.assertEqual(owner_url, '/owner')
+        self.assertEqual(owner_url, '/owner/')
 
     def test_url_register_car_is_correct(self):
         register_car_url = reverse('management_cars_city:register_car')
-        self.assertEqual(register_car_url, '/register-car')
+        self.assertEqual(register_car_url, '/register-car/')
 
     def test_url_create_person_is_correct(self):
         create_person_url = reverse('management_cars_city:create_person')
-        self.assertEqual(create_person_url, '/create-person')
+        self.assertEqual(create_person_url, '/create-person/')
 
     def test_url_sales_opportunity_id_is_correct(self):
         sales_opportunity_id_url = reverse(
@@ -51,5 +51,3 @@ class UrlsTestApp(TestCase):
     def test_url_search_return_is_ok(self):
         url_search_return_termo = reverse('management_cars_city:pesquisar')
         self.assertEqual(url_search_return_termo, '/search/')
-
-

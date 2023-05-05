@@ -69,7 +69,12 @@ class PersonTest(TestCase):
 
 class CarTest(TestCase):
     def setUp(self):
-        self.person_1 = Person.objects.create(name='igor')
+        self.person_1 = Person.objects.create(name='igor',
+                                              lastname='marques',
+                                              email='igor@igor.com',
+                                              cpf='57486523230',
+                                              cellphone='11912358852',
+                                              owner_car=True)
 
         self.car_1 = Car.objects.create(
                                         model='Hatch',
@@ -88,7 +93,12 @@ class CarTest(TestCase):
                         color='Amarelo',
                         owner=self.person_1)
 
-        self.person_2 = Person.objects.create(name='marcia')
+        self.person_2 = Person.objects.create(name='marcia',
+                                              lastname='nascimento',
+                                              email='marcia@marcia.com',
+                                              cpf='94520596998',
+                                              cellphone='11955551234',
+                                              owner_car=True)
 
         self.car_5 = Car.objects.create(
                                     model='Conversivel',
