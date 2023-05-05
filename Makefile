@@ -20,6 +20,9 @@ clean:
 test:
 	python manage.py test
 
+pytest:
+	pytest --cov=. --cov-report=html
+
 up:
 	docker compose up -d
 

@@ -1,4 +1,5 @@
 from rest_framework import generics, serializers
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
 from management_cars_city.models import Car, Person
@@ -47,11 +48,11 @@ class CarSerializer(serializers.ModelSerializer):
         model = data.get('model')
         color = data.get('color')
         if owner.car_set.count() >= 3:
-            raise serializers.ValidationError('Já possui número máximo de veículos')
+            raise ValidationError('Já possui número máximo de veículos')
         if Car.objects.filter(owner=owner, model=model).exists():
-            raise serializers.ValidationError('Este modelo não pode ser selecionado')
+            raise ValidationError('Este modelo não pode ser selecionado')
         if Car.objects.filter(owner=owner, color=color).exists():
-            raise serializers.ValidationError('Esta cor não pode ser selecionada')
+            raise ValidationError('Esta cor não pode ser selecionada')
         return data
 
 

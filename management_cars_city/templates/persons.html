@@ -25,7 +25,7 @@
                     {% for person in persons %}
                     <tr>
                         <td> <a href="{% url 'management_cars_city:update_person' person.id %}"
-                                class="btn btn-warning">{{person.id}}</a></td>
+                                class="btn btn-sm btn-warning">{{person.id}}</a></td>
                         <td>
                             <a
                                 href="{% url 'management_cars_city:update_person' person.id %}">{{person.format_name}}</a>

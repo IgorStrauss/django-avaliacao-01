@@ -6,6 +6,7 @@ from django.test import Client, RequestFactory, TestCase
 from django.urls import reverse
 
 from management_cars_city.models import Car, Person
+from management_cars_city.service import CarService
 from management_cars_city.views import persons, search
 
 
@@ -56,13 +57,13 @@ class TestViewPersons(TestCase):
             )
 
     def test_view_persons_with_paginated(self):
-        url = '/persons/'
-        response = self.client.get(url, {'p': '1'})
-        response = persons(response.wsgi_request)
-        self.assertEqual(response.status_code, 200)
+        self._base_for_test_paginated_and_oportunity('/persons/')
 
     def test_view_persons_sales_oportunity(self):
-        url = '/oportunity/'
+        self._base_for_test_paginated_and_oportunity('/oportunity/')
+
+    def _base_for_test_paginated_and_oportunity(self, arg0):
+        url = arg0
         response = self.client.get(url, {'p': '1'})
         response = persons(response.wsgi_request)
         self.assertEqual(response.status_code, 200)
@@ -83,7 +84,7 @@ class TestSalesOpportunity(TestCase):
             )
 
     def test_view_sales_oportunity(self):
-        response = self.client.get('/oportunity')
+        response = self.client.get('/oportunity/')
         self.assertEqual(response.status_code, 200)
 
 
@@ -124,7 +125,7 @@ class TestOwnersCar(TestCase):
                                         owner=self.person_1)
 
     def test_view_owner_cars(self):
-        response = self.client.get('/owner')
+        response = self.client.get('/owner/')
         self.assertEqual(response.status_code, 200)
 
 
@@ -155,3 +156,16 @@ class TestPersonsCars(TestCase):
         self.assertEqual(response.context['car_count'], 2)
         self.assertEqual(list(response.context['cars']),
                          [self.car_1, self.car_2])
+
+
+class TestPersonOwnerCarPosDelete(TestCase):
+    def setUp(self) -> None:
+        self.car_1 = Car.objects.create(
+                                        model='Hatch',
+                                        color='Amarelo',
+                                        owner_id=1)
+
+    def update_owner_car_delete(self):
+        CarService.update_owner_car_delete(self.car_1)
+        self.car_1.refresh_from_db()
+        self.assertFalse(self.car_1.owner.owner_car)

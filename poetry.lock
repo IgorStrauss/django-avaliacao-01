@@ -44,6 +44,9 @@ category = "main"
 optional = false
 python-versions = ">=3.7"
 
+[package.dependencies]
+tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.11.0a6\" and extra == \"toml\""}
+
 [package.extras]
 toml = ["tomli"]
 
@@ -257,6 +260,21 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-cov"
+version = "4.0.0"
+description = "Pytest plugin for measuring coverage."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+coverage = {version = ">=5.2.1", extras = ["toml"]}
+pytest = ">=4.6"
+
+[package.extras]
+testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
+
+[[package]]
 name = "pytest-django"
 version = "4.5.2"
 description = "A Django plugin for pytest."
@@ -337,7 +355,7 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "7921c5b3a3a84bedcabe06766027642054bf01b866d440f40b5bb91e0965a3c9"
+content-hash = "e4e61cba25ce6cd3dac2f24364cad0f037759253e8ce882fc6922a3a8e88e232"
 
 [metadata.files]
 asgiref = [
@@ -549,6 +567,10 @@ psycopg2-binary = [
 pytest = [
     {file = "pytest-7.3.0-py3-none-any.whl", hash = "sha256:933051fa1bfbd38a21e73c3960cebdad4cf59483ddba7696c48509727e17f201"},
     {file = "pytest-7.3.0.tar.gz", hash = "sha256:58ecc27ebf0ea643ebfdf7fb1249335da761a00c9f955bcd922349bcb68ee57d"},
+]
+pytest-cov = [
+    {file = "pytest-cov-4.0.0.tar.gz", hash = "sha256:996b79efde6433cdbd0088872dbc5fb3ed7fe1578b68cdbba634f14bb8dd0470"},
+    {file = "pytest_cov-4.0.0-py3-none-any.whl", hash = "sha256:2feb1b751d66a8bd934e5edfa2e961d11309dc37b73b0eabe73b5945fee20f6b"},
 ]
 pytest-django = [
     {file = "pytest-django-4.5.2.tar.gz", hash = "sha256:d9076f759bb7c36939dbdd5ae6633c18edfc2902d1a69fdbefd2426b970ce6c2"},
