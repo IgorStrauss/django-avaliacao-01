@@ -13,13 +13,12 @@
 
 ## Clonando e inicializando o projeto
 Após clonar o projeto
- - Inicializar seu ambiente virtual
- - Criar arquivo .env (há um arquivo nomeado env_copy.txt) copiar mesmos dados
- - Digitar comando:
-  - docker compose build, ou (make build)
-Após finalizado processo de gerar as imagens
- - Digitar comando:
-  - docker compose up, ou (make up)
+#### Inicializar seu ambiente virtual
+    Criar arquivo .env (há um arquivo nomeado env_copy.txt) copiar mesmos dados
+#### Digitar comando:
+    docker compose build, ou (make build)
+#### Após finalizado processo de gerar as imagens digitar comando:
+    docker compose up, ou (make up)
 
 Após inicializado os 3 containers, já pode acessar o pgadmin e configurar servidor
 
