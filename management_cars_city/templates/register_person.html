@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,20 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Cadastro</title>
 
 </head>
 
-<body>
-    <div class="container">
-        <center>
-            <h1>Cadastrar usuário</h1>
-        </center>
-
-        <form action="{% url 'management_cars_city:create_person' %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+<body style="background-color: #CCC">
+    <div class="container mt-5" style="background-color">
+        <form action="{{ form_action }}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form }}
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+            <div class="form-content">
+                <div class="form-group">
+                    <label for="name">Seu primeiro nome</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Seu primeiro nome">
+                </div>
+                <div class="form-content">
+                    <div class="form-group">
+                        <label for="lastname">Seu ultimo nome</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname"
+                            placeholder="Seu ultimo nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Endereço de email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Seu email">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <label for="cpf">Seu CPF</label>
+                            <input type="text" class="form-control" id="cpf" name="cpf"
+                                placeholder="Seu CPF, somente números">
+                        </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <label for="cellphone">Seu celular com DDD</label>
+                            <input type="text" class="form-control" id="cellphone" name="cellphone"
+                                placeholder="Seu celular com DDD, somente números">
+                        </div>
+                    </div>
+
+                    <!--button-->
+                    <button class="btn btn-outline-primary" type="submit">Enviar</button>
         </form>
     </div>
 </body>

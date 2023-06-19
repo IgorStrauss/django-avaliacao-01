@@ -11,22 +11,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
 
 </head>
 
 <body>
     <div class="container">
         <center>
-            <h1>Cadastrar usuário</h1>
+            <h1>Atualizar usuário</h1>
         </center>
 
-        <form action="{% url 'management_cars_city:update_person' person.id %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit" class="btn btn-sm btn-primary">Atualizar</button>
-        </form>
-    </div>
+            <div class="container mt-5" style="background-color">
+                <form action="{% url 'management_cars_city:update_person' person.id %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+        
+                    <div class="form-content">
+                    <div class="form-group">
+                        <label for="name">Seu primeiro nome</label>
+                        <input type="text" class="form-control" value="{{ person.name }}" id="name" name="name" placeholder="Seu primeiro nome">
+                    </div>
+                    <div class="form-content">
+                    <div class="form-group">
+                        <label for="lastname">Seu ultimo nome</label>
+                        <input type="text" class="form-control" value="{{ person.lastname }}" id="lastname" name="lastname"
+                            placeholder="Seu ultimo nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Endereço de email</label>
+                        <input type="email" class="form-control" value="{{ person.email }}" id="email" name="email" placeholder="Seu email">
+                    </div>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-group">
+                            <label for="cellphone">Seu celular com DDD</label>
+                            <input type="text" class="form-control" value="{{ person.cellphone }}" id="cellphone" name="cellphone"
+                                placeholder="Seu celular com DDD, somente números">
+                        </div>
+                    </div>
+        
+                            <!--button-->
+                    <button class="btn btn-outline-primary" type="submit">Atualizar</button>
+                </form>
+            </div>
+        </div>
 </body>
 
 </html>
