@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView
 
-from .forms import CarForm, PersonForm
+from .forms import CarForm, PersonForm, UpdatePersonForm
 from .models import Car, Person
 from .service import CarService, PersonService
 
@@ -16,10 +16,9 @@ def index_first(request):
 
 class CreatePerson(CreateView):
     model = Person
-    context = {'form': PersonForm()}
+    form_class = PersonForm
     template_name = "register_person.html"
     success_url = reverse_lazy("management_cars_city:index")
-    fields = ("name", "lastname", "email", "cpf", "cellphone")
 
 
 def persons(request):
@@ -57,7 +56,7 @@ def sales_oportunity_id(request, pk):
 
 class UpdatePerson(UpdateView):
     model = Person
-    fields = ["name", "lastname", "email", "cellphone"]
+    form_class = UpdatePersonForm
     success_url = reverse_lazy("management_cars_city:index")
     template_name = "update_person.html"
 
@@ -66,7 +65,8 @@ class CreateCar(CreateView):
     model = Car
     context = {'form': CarForm()}
     template_name = "register_car.html"
-    success_url = reverse_lazy("management_cars_city:listar_carros_proprietarios")
+    success_url = reverse_lazy(
+        "management_cars_city:listar_carros_proprietarios")
     fields = ("model", "color", "owner")
 
     @receiver(post_save, sender=Car)

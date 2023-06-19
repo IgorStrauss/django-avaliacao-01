@@ -3,12 +3,27 @@ from django import forms
 from .models import Car, Person
 
 
-class PersonForm(forms.Form):
-    name = forms.CharField(max_length=15)
-    lastname = forms.CharField(max_length=15)
-    email = forms.EmailField()
-    cpf = forms.CharField(max_length=11)
-    cellphone = forms.CharField(max_length=11)
+class PersonForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = [
+            'name',
+            'lastname',
+            'email',
+            'cpf',
+            'cellphone'
+        ]
+
+
+class UpdatePersonForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = [
+            'name',
+            'lastname',
+            'email',
+            'cellphone'
+        ]
 
 
 class CarForm(forms.Form):
